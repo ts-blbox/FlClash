@@ -1,8 +1,3 @@
-/*
- * @Date: 2026-01-15 21:07:16
- * @LastEditors: blbox
- * @LastEditTime: 2026-01-19 14:16:28
- */
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
 // This is a library that looks up messages for specific locales by
 // delegating to the appropriate library.

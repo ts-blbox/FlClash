@@ -89,6 +89,21 @@ class AppLocalizations {
     return Intl.message('Profiles', name: 'profiles', desc: '', args: []);
   }
 
+  /// `Purchase`
+  String get purchase {
+    return Intl.message('Purchase', name: 'purchase', desc: '', args: []);
+  }
+
+  /// `Subscribe or purchase service`
+  String get purchaseDesc {
+    return Intl.message(
+      'Subscribe or purchase service',
+      name: 'purchaseDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tools`
   String get tools {
     return Intl.message('Tools', name: 'tools', desc: '', args: []);
@@ -3666,12 +3681,7 @@ class AppLocalizations {
 
   /// `Mini Mode`
   String get miniMode {
-    return Intl.message(
-      'Mini Mode',
-      name: 'miniMode',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mini Mode', name: 'miniMode', desc: '', args: []);
   }
 
   /// `Show a floating traffic statistics window after a successful connection`

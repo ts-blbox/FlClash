@@ -670,6 +670,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Установить порт прослушивания Clash",
     ),
     "proxyProviders": MessageLookupByLibrary.simpleMessage("Провайдеры прокси"),
+    "purchase": MessageLookupByLibrary.simpleMessage("Покупка"),
+    "purchaseDesc": MessageLookupByLibrary.simpleMessage(
+      "Подписаться или купить услугу",
+    ),
     "pureBlackMode": MessageLookupByLibrary.simpleMessage("Чисто черный режим"),
     "qrcode": MessageLookupByLibrary.simpleMessage("QR-код"),
     "qrcodeDesc": MessageLookupByLibrary.simpleMessage(
@@ -771,7 +775,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Показать плавающее окно трафика",
     ),
     "showTrafficFloatingWindowDesc": MessageLookupByLibrary.simpleMessage(
-      "Показывать плавающее окно статистики трафика после успешного подключения",
+      "Показать плавающее окно статистики трафика после успешного подключения",
     ),
     "shrink": MessageLookupByLibrary.simpleMessage("Сжать"),
     "silentLaunch": MessageLookupByLibrary.simpleMessage("Тихий запуск"),

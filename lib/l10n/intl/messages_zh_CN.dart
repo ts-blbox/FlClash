@@ -424,6 +424,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "proxyPort": MessageLookupByLibrary.simpleMessage("代理端口"),
     "proxyPortDesc": MessageLookupByLibrary.simpleMessage("设置Clash监听端口"),
     "proxyProviders": MessageLookupByLibrary.simpleMessage("代理提供者"),
+    "purchase": MessageLookupByLibrary.simpleMessage("选购"),
+    "purchaseDesc": MessageLookupByLibrary.simpleMessage("订阅或购买服务"),
     "pureBlackMode": MessageLookupByLibrary.simpleMessage("纯黑模式"),
     "qrcode": MessageLookupByLibrary.simpleMessage("二维码"),
     "qrcodeDesc": MessageLookupByLibrary.simpleMessage("扫描二维码获取配置文件"),
@@ -485,6 +487,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectedCountTitle": m12,
     "settings": MessageLookupByLibrary.simpleMessage("设置"),
     "show": MessageLookupByLibrary.simpleMessage("显示"),
+    "showTrafficFloatingWindow": MessageLookupByLibrary.simpleMessage(
+      "显示流量悬浮窗",
+    ),
+    "showTrafficFloatingWindowDesc": MessageLookupByLibrary.simpleMessage(
+      "代理连接成功后显示悬浮流量统计窗",
+    ),
     "shrink": MessageLookupByLibrary.simpleMessage("紧凑"),
     "silentLaunch": MessageLookupByLibrary.simpleMessage("静默启动"),
     "silentLaunchDesc": MessageLookupByLibrary.simpleMessage("后台启动"),
@@ -496,8 +504,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "specialProxy": MessageLookupByLibrary.simpleMessage("特殊代理"),
     "specialRules": MessageLookupByLibrary.simpleMessage("特殊规则"),
     "speedStatistics": MessageLookupByLibrary.simpleMessage("网速统计"),
-    "showTrafficFloatingWindow": MessageLookupByLibrary.simpleMessage("显示流量悬浮窗"),
-    "showTrafficFloatingWindowDesc": MessageLookupByLibrary.simpleMessage("连接成功后显示悬浮的流量统计窗口"),
     "stackMode": MessageLookupByLibrary.simpleMessage("栈模式"),
     "standard": MessageLookupByLibrary.simpleMessage("标准"),
     "standardModeDesc": MessageLookupByLibrary.simpleMessage(

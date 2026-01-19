@@ -637,6 +637,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Set the Clash listening port",
     ),
     "proxyProviders": MessageLookupByLibrary.simpleMessage("Proxy providers"),
+    "purchase": MessageLookupByLibrary.simpleMessage("Purchase"),
+    "purchaseDesc": MessageLookupByLibrary.simpleMessage(
+      "Subscribe or purchase service",
+    ),
     "pureBlackMode": MessageLookupByLibrary.simpleMessage("Pure black mode"),
     "qrcode": MessageLookupByLibrary.simpleMessage("QR code"),
     "qrcodeDesc": MessageLookupByLibrary.simpleMessage(
@@ -728,6 +732,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectedCountTitle": m12,
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "show": MessageLookupByLibrary.simpleMessage("Show"),
+    "showTrafficFloatingWindow": MessageLookupByLibrary.simpleMessage(
+      "Show traffic floating window",
+    ),
+    "showTrafficFloatingWindowDesc": MessageLookupByLibrary.simpleMessage(
+      "Show a floating traffic statistics window after a successful connection",
+    ),
     "shrink": MessageLookupByLibrary.simpleMessage("Shrink"),
     "silentLaunch": MessageLookupByLibrary.simpleMessage("SilentLaunch"),
     "silentLaunchDesc": MessageLookupByLibrary.simpleMessage(
@@ -741,8 +751,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "specialProxy": MessageLookupByLibrary.simpleMessage("Special proxy"),
     "specialRules": MessageLookupByLibrary.simpleMessage("special rules"),
     "speedStatistics": MessageLookupByLibrary.simpleMessage("Speed statistics"),
-    "showTrafficFloatingWindow": MessageLookupByLibrary.simpleMessage("Show traffic floating window"),
-    "showTrafficFloatingWindowDesc": MessageLookupByLibrary.simpleMessage("Show a floating traffic statistics window after a successful connection"),
     "stackMode": MessageLookupByLibrary.simpleMessage("Stack mode"),
     "standard": MessageLookupByLibrary.simpleMessage("Standard"),
     "standardModeDesc": MessageLookupByLibrary.simpleMessage(

@@ -6,6 +6,8 @@
   "proxies": "Proxies",
   "profile": "Profile",
   "profiles": "Profiles",
+  "purchase": "Purchase",
+  "purchaseDesc": "Subscribe or purchase service",
   "tools": "Tools",
   "logs": "Logs",
   "logsDesc": "Log capture records",
