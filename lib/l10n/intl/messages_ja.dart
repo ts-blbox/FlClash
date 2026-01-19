@@ -352,6 +352,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "messageTest": MessageLookupByLibrary.simpleMessage("メッセージテスト"),
     "messageTestTip": MessageLookupByLibrary.simpleMessage("これはメッセージです。"),
     "min": MessageLookupByLibrary.simpleMessage("最小化"),
+    "miniMode": MessageLookupByLibrary.simpleMessage("ミニモード"),
     "minimizeOnExit": MessageLookupByLibrary.simpleMessage("終了時に最小化"),
     "minimizeOnExitDesc": MessageLookupByLibrary.simpleMessage(
       "システムの終了イベントを変更",
@@ -552,6 +553,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectedCountTitle": m12,
     "settings": MessageLookupByLibrary.simpleMessage("設定"),
     "show": MessageLookupByLibrary.simpleMessage("表示"),
+    "showTrafficFloatingWindow": MessageLookupByLibrary.simpleMessage(
+      "トラフィック浮動ウィンドウを表示",
+    ),
+    "showTrafficFloatingWindowDesc": MessageLookupByLibrary.simpleMessage(
+      "接続成功後にトラフィック統計の浮動ウィンドウを表示する",
+    ),
     "shrink": MessageLookupByLibrary.simpleMessage("縮小"),
     "silentLaunch": MessageLookupByLibrary.simpleMessage("バックグラウンド起動"),
     "silentLaunchDesc": MessageLookupByLibrary.simpleMessage("バックグラウンドで起動"),

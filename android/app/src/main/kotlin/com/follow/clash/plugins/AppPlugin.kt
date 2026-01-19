@@ -7,8 +7,10 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.ComponentInfo
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.net.VpnService
 import android.os.Build
+import android.provider.Settings
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -46,6 +48,7 @@ class AppPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware 
     companion object {
         const val VPN_PERMISSION_REQUEST_CODE = 1001
         const val NOTIFICATION_PERMISSION_REQUEST_CODE = 1002
+        const val SYSTEM_ALERT_WINDOW_PERMISSION_REQUEST_CODE = 1003
     }
 
     private var activityRef: WeakReference<Activity>? = null
@@ -57,6 +60,8 @@ class AppPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware 
     private var vpnPrepareCallback: (suspend () -> Unit)? = null
 
     private var requestNotificationCallback: (() -> Unit)? = null
+
+    private var systemAlertWindowCallback: (() -> Unit)? = null
 
     private val packages = mutableListOf<Package>()
 
@@ -155,6 +160,16 @@ class AppPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware 
                 val message = call.argument<String>("message")
                 tip(message)
                 result.success(true)
+            }
+
+            "checkSystemAlertWindowPermission" -> {
+                result.success(Settings.canDrawOverlays(GlobalState.application))
+            }
+
+            "requestSystemAlertWindowPermission" -> {
+                requestSystemAlertWindowPermission {
+                    result.success(Settings.canDrawOverlays(GlobalState.application))
+                }
             }
 
             else -> {
@@ -263,6 +278,8 @@ class AppPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware 
                     arrayOf(Manifest.permission.POST_NOTIFICATIONS),
                     NOTIFICATION_PERMISSION_REQUEST_CODE
                 )
+            } ?: run {
+                invokeRequestNotificationCallback()
             }
             return
         } else {
@@ -274,6 +291,28 @@ class AppPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware 
     fun invokeRequestNotificationCallback() {
         requestNotificationCallback?.invoke()
         requestNotificationCallback = null
+    }
+
+    fun requestSystemAlertWindowPermission(callBack: () -> Unit) {
+        systemAlertWindowCallback = callBack
+        if (Settings.canDrawOverlays(GlobalState.application)) {
+            invokeSystemAlertWindowCallback()
+            return
+        }
+        val intent = Intent(
+            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+            Uri.parse("package:${GlobalState.application.packageName}")
+        )
+        activityRef?.get()?.let {
+            it.startActivityForResult(intent, SYSTEM_ALERT_WINDOW_PERMISSION_REQUEST_CODE)
+        } ?: run {
+            invokeSystemAlertWindowCallback()
+        }
+    }
+
+    fun invokeSystemAlertWindowCallback() {
+        systemAlertWindowCallback?.invoke()
+        systemAlertWindowCallback = null
     }
 
     fun prepare(needPrepare: Boolean, callBack: (suspend () -> Unit)) {
@@ -402,6 +441,9 @@ class AppPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware 
             if (resultCode == FlutterActivity.RESULT_OK) {
                 invokeVpnPrepareCallback()
             }
+        }
+        if (requestCode == SYSTEM_ALERT_WINDOW_PERMISSION_REQUEST_CODE) {
+            invokeSystemAlertWindowCallback()
         }
         return true
     }

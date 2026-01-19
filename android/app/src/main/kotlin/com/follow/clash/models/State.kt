@@ -6,4 +6,5 @@ data class AppState(
     val currentProfileName: String = "FlClash",
     val stopText: String = "Stop",
     val onlyStatisticsProxy: Boolean = false,
+    val showTrafficFloatingWindow: Boolean = false,
 )

@@ -667,11 +667,15 @@ AndroidState androidState(Ref ref) {
   final crashlytics = ref.watch(
     (appSettingProvider).select((state) => state.crashlytics),
   );
+  final showTrafficFloatingWindow = ref.watch(
+    (appSettingProvider).select((state) => state.showTrafficFloatingWindow),
+  );
   return AndroidState(
     currentProfileName: currentProfileName,
     onlyStatisticsProxy: onlyStatisticsProxy,
     stopText: appLocalizations.stop,
     crashlytics: crashlytics,
+    showTrafficFloatingWindow: showTrafficFloatingWindow,
   );
 }
 

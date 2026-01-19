@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import com.follow.clash.core.Core
+import com.follow.clash.service.modules.FloatWindowModule
 import com.follow.clash.service.modules.NetworkObserveModule
 import com.follow.clash.service.modules.NotificationModule
 import com.follow.clash.service.modules.SuspendModule
@@ -22,6 +23,7 @@ class CommonService : Service(), IBaseService,
         install(NetworkObserveModule(self))
         install(NotificationModule(self))
         install(SuspendModule(self))
+        install(FloatWindowModule(self))
     }
 
     override fun onCreate() {

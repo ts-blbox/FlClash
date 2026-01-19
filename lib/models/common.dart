@@ -366,57 +366,113 @@ extension ColorSchemesExt on ColorSchemes {
 
 @freezed
 abstract class IpInfo with _$IpInfo {
-  const factory IpInfo({required String ip, required String countryCode}) =
-      _IpInfo;
+  const factory IpInfo({
+    required String ip,
+    required String countryCode,
+    String? country,
+    String? region,
+  }) = _IpInfo;
 
   static IpInfo fromIpInfoIoJson(Map<String, dynamic> json) {
     return switch (json) {
-      {'ip': final String ip, 'country': final String country} => IpInfo(
-        ip: ip,
-        countryCode: country,
-      ),
+      {
+        'ip': final String ip,
+        'country': final String countryCode,
+        'region': final String region,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          region: region,
+        ),
       _ => throw const FormatException('invalid json'),
     };
   }
 
   static IpInfo fromIpApiCoJson(Map<String, dynamic> json) {
     return switch (json) {
-      {'ip': final String ip, 'country_code': final String countryCode} =>
-        IpInfo(ip: ip, countryCode: countryCode),
+      {
+        'ip': final String ip,
+        'country_code': final String countryCode,
+        'country_name': final String country,
+        'region': final String region,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          country: country,
+          region: region,
+        ),
       _ => throw const FormatException('invalid json'),
     };
   }
 
   static IpInfo fromIpSbJson(Map<String, dynamic> json) {
     return switch (json) {
-      {'ip': final String ip, 'country_code': final String countryCode} =>
-        IpInfo(ip: ip, countryCode: countryCode),
+      {
+        'ip': final String ip,
+        'country_code': final String countryCode,
+        'country': final String country,
+        'region': final String region,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          country: country,
+          region: region,
+        ),
       _ => throw const FormatException('invalid json'),
     };
   }
 
   static IpInfo fromIpWhoIsJson(Map<String, dynamic> json) {
     return switch (json) {
-      {'ip': final String ip, 'country_code': final String countryCode} =>
-        IpInfo(ip: ip, countryCode: countryCode),
+      {
+        'ip': final String ip,
+        'country_code': final String countryCode,
+        'country': final String country,
+        'region': final String region,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          country: country,
+          region: region,
+        ),
       _ => throw const FormatException('invalid json'),
     };
   }
 
   static IpInfo fromMyIpJson(Map<String, dynamic> json) {
     return switch (json) {
-      {'ip': final String ip, 'cc': final String countryCode} => IpInfo(
-        ip: ip,
-        countryCode: countryCode,
-      ),
+      {
+        'ip': final String ip,
+        'cc': final String countryCode,
+        'country': final String country,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          country: country,
+        ),
       _ => throw const FormatException('invalid json'),
     };
   }
 
   static IpInfo fromIpAPIJson(Map<String, dynamic> json) {
     return switch (json) {
-      {'query': final String ip, 'countryCode': final String countryCode} =>
-        IpInfo(ip: ip, countryCode: countryCode),
+      {
+        'query': final String ip,
+        'countryCode': final String countryCode,
+        'country': final String country,
+        'regionName': final String region,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          country: country,
+          region: region,
+        ),
       _ => throw const FormatException('invalid json'),
     };
   }
@@ -424,9 +480,9 @@ abstract class IpInfo with _$IpInfo {
   static IpInfo fromIdentMeJson(Map<String, dynamic> json) {
     return switch (json) {
       {'ip': final String ip, 'cc': final String countryCode} => IpInfo(
-        ip: ip,
-        countryCode: countryCode,
-      ),
+          ip: ip,
+          countryCode: countryCode,
+        ),
       _ => throw const FormatException('invalid json'),
     };
   }
@@ -478,6 +534,7 @@ abstract class AndroidState with _$AndroidState {
     required String stopText,
     required bool onlyStatisticsProxy,
     required bool crashlytics,
+    required bool showTrafficFloatingWindow,
   }) = _AndroidState;
 
   factory AndroidState.fromJson(Map<String, Object?> json) =>

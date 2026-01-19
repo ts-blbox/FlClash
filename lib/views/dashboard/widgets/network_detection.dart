@@ -4,6 +4,7 @@ import 'package:fl_clash/models/models.dart';
 import 'package:fl_clash/state.dart';
 import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NetworkDetection extends ConsumerStatefulWidget {
@@ -24,6 +25,61 @@ class _NetworkDetectionState extends ConsumerState<NetworkDetection> {
     return String.fromCharCode(firstLetter) + String.fromCharCode(secondLetter);
   }
 
+  void _showDetail(BuildContext context, IpInfo ipInfo) {
+    globalState.showCommonDialog(
+      child: CommonDialog(
+        title: appLocalizations.networkDetection,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildDetailItem(context, 'IP', ipInfo.ip),
+            const SizedBox(height: 8),
+            _buildDetailItem(
+              context,
+              appLocalizations.country,
+              ipInfo.country ?? appLocalizations.unknown,
+            ),
+            if (ipInfo.region != null && ipInfo.region!.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              _buildDetailItem(context, 'Region', ipInfo.region!),
+            ]
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDetailItem(BuildContext context, String label, String value) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '$label: ',
+          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+        Expanded(
+          child: SelectableText(
+            value,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ),
+        const SizedBox(width: 8),
+        IconButton(
+          onPressed: () {
+            Clipboard.setData(ClipboardData(text: value));
+            globalState.showNotifier(appLocalizations.copy);
+          },
+          icon: const Icon(Icons.copy, size: 14),
+          constraints: const BoxConstraints(),
+          padding: EdgeInsets.zero,
+          splashRadius: 16,
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -34,7 +90,13 @@ class _NetworkDetectionState extends ConsumerState<NetworkDetection> {
           final ipInfo = state.ipInfo;
           final isLoading = state.isLoading;
           return CommonCard(
-            onPressed: () {},
+            onPressed: () {
+              if (ipInfo != null) {
+                _showDetail(context, ipInfo);
+              } else {
+                detectionState.tryStartCheck();
+              }
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -108,7 +170,9 @@ class _NetworkDetectionState extends ConsumerState<NetworkDetection> {
                       child: ipInfo != null
                           ? TooltipText(
                               text: Text(
-                                ipInfo.ip,
+                                ipInfo.country != null || ipInfo.region != null
+                                     ? '${[ipInfo.country, ipInfo.region].where((e) => e != null).join(' - ')} · ${ipInfo.ip}'
+                                     : ipInfo.ip,
                                 style: context.textTheme.bodyMedium?.toLight
                                     .adjustSize(1),
                                 maxLines: 1,

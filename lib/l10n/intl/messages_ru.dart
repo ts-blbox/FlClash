@@ -494,6 +494,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "messageTestTip": MessageLookupByLibrary.simpleMessage("Это сообщение."),
     "min": MessageLookupByLibrary.simpleMessage("Мин"),
+    "miniMode": MessageLookupByLibrary.simpleMessage("Мини-режим"),
     "minimizeOnExit": MessageLookupByLibrary.simpleMessage(
       "Свернуть при выходе",
     ),
@@ -766,6 +767,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectedCountTitle": m12,
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "show": MessageLookupByLibrary.simpleMessage("Показать"),
+    "showTrafficFloatingWindow": MessageLookupByLibrary.simpleMessage(
+      "Показать плавающее окно трафика",
+    ),
+    "showTrafficFloatingWindowDesc": MessageLookupByLibrary.simpleMessage(
+      "Показывать плавающее окно статистики трафика после успешного подключения",
+    ),
     "shrink": MessageLookupByLibrary.simpleMessage("Сжать"),
     "silentLaunch": MessageLookupByLibrary.simpleMessage("Тихий запуск"),
     "silentLaunchDesc": MessageLookupByLibrary.simpleMessage(

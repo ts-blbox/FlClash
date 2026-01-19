@@ -245,6 +245,7 @@ _AndroidState _$AndroidStateFromJson(Map<String, dynamic> json) =>
       stopText: json['stopText'] as String,
       onlyStatisticsProxy: json['onlyStatisticsProxy'] as bool,
       crashlytics: json['crashlytics'] as bool,
+      showTrafficFloatingWindow: json['showTrafficFloatingWindow'] as bool,
     );
 
 Map<String, dynamic> _$AndroidStateToJson(_AndroidState instance) =>
@@ -253,6 +254,7 @@ Map<String, dynamic> _$AndroidStateToJson(_AndroidState instance) =>
       'stopText': instance.stopText,
       'onlyStatisticsProxy': instance.onlyStatisticsProxy,
       'crashlytics': instance.crashlytics,
+      'showTrafficFloatingWindow': instance.showTrafficFloatingWindow,
     };
 
 _Script _$ScriptFromJson(Map<String, dynamic> json) => _Script(

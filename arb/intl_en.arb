@@ -466,5 +466,8 @@
   "vpnConfigChangeDetected": "VPN configuration change detected",
   "restart": "Restart",
   "speedStatistics": "Speed statistics",
+  "showTrafficFloatingWindow": "Show traffic floating window",
+  "miniMode": "Mini Mode",
+  "showTrafficFloatingWindowDesc": "Show a floating traffic statistics window after a successful connection",
   "resetPageChangesTip": "The current page has changes. Are you sure you want to reset?"
 }

@@ -4174,7 +4174,7 @@ as ColorScheme?,
 /// @nodoc
 mixin _$IpInfo {
 
- String get ip; String get countryCode;
+ String get ip; String get countryCode; String? get country; String? get region;
 /// Create a copy of IpInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4185,16 +4185,16 @@ $IpInfoCopyWith<IpInfo> get copyWith => _$IpInfoCopyWithImpl<IpInfo>(this as IpI
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is IpInfo&&(identical(other.ip, ip) || other.ip == ip)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is IpInfo&&(identical(other.ip, ip) || other.ip == ip)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.country, country) || other.country == country)&&(identical(other.region, region) || other.region == region));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ip,countryCode);
+int get hashCode => Object.hash(runtimeType,ip,countryCode,country,region);
 
 @override
 String toString() {
-  return 'IpInfo(ip: $ip, countryCode: $countryCode)';
+  return 'IpInfo(ip: $ip, countryCode: $countryCode, country: $country, region: $region)';
 }
 
 
@@ -4205,7 +4205,7 @@ abstract mixin class $IpInfoCopyWith<$Res>  {
   factory $IpInfoCopyWith(IpInfo value, $Res Function(IpInfo) _then) = _$IpInfoCopyWithImpl;
 @useResult
 $Res call({
- String ip, String countryCode
+ String ip, String countryCode, String? country, String? region
 });
 
 
@@ -4222,11 +4222,13 @@ class _$IpInfoCopyWithImpl<$Res>
 
 /// Create a copy of IpInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ip = null,Object? countryCode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ip = null,Object? countryCode = null,Object? country = freezed,Object? region = freezed,}) {
   return _then(_self.copyWith(
 ip: null == ip ? _self.ip : ip // ignore: cast_nullable_to_non_nullable
 as String,countryCode: null == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
-as String,
+as String,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,region: freezed == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -4311,10 +4313,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String ip,  String countryCode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String ip,  String countryCode,  String? country,  String? region)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _IpInfo() when $default != null:
-return $default(_that.ip,_that.countryCode);case _:
+return $default(_that.ip,_that.countryCode,_that.country,_that.region);case _:
   return orElse();
 
 }
@@ -4332,10 +4334,10 @@ return $default(_that.ip,_that.countryCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String ip,  String countryCode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String ip,  String countryCode,  String? country,  String? region)  $default,) {final _that = this;
 switch (_that) {
 case _IpInfo():
-return $default(_that.ip,_that.countryCode);case _:
+return $default(_that.ip,_that.countryCode,_that.country,_that.region);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -4352,10 +4354,10 @@ return $default(_that.ip,_that.countryCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String ip,  String countryCode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String ip,  String countryCode,  String? country,  String? region)?  $default,) {final _that = this;
 switch (_that) {
 case _IpInfo() when $default != null:
-return $default(_that.ip,_that.countryCode);case _:
+return $default(_that.ip,_that.countryCode,_that.country,_that.region);case _:
   return null;
 
 }
@@ -4367,11 +4369,13 @@ return $default(_that.ip,_that.countryCode);case _:
 
 
 class _IpInfo implements IpInfo {
-  const _IpInfo({required this.ip, required this.countryCode});
+  const _IpInfo({required this.ip, required this.countryCode, this.country, this.region});
   
 
 @override final  String ip;
 @override final  String countryCode;
+@override final  String? country;
+@override final  String? region;
 
 /// Create a copy of IpInfo
 /// with the given fields replaced by the non-null parameter values.
@@ -4383,16 +4387,16 @@ _$IpInfoCopyWith<_IpInfo> get copyWith => __$IpInfoCopyWithImpl<_IpInfo>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IpInfo&&(identical(other.ip, ip) || other.ip == ip)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IpInfo&&(identical(other.ip, ip) || other.ip == ip)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode)&&(identical(other.country, country) || other.country == country)&&(identical(other.region, region) || other.region == region));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ip,countryCode);
+int get hashCode => Object.hash(runtimeType,ip,countryCode,country,region);
 
 @override
 String toString() {
-  return 'IpInfo(ip: $ip, countryCode: $countryCode)';
+  return 'IpInfo(ip: $ip, countryCode: $countryCode, country: $country, region: $region)';
 }
 
 
@@ -4403,7 +4407,7 @@ abstract mixin class _$IpInfoCopyWith<$Res> implements $IpInfoCopyWith<$Res> {
   factory _$IpInfoCopyWith(_IpInfo value, $Res Function(_IpInfo) _then) = __$IpInfoCopyWithImpl;
 @override @useResult
 $Res call({
- String ip, String countryCode
+ String ip, String countryCode, String? country, String? region
 });
 
 
@@ -4420,11 +4424,13 @@ class __$IpInfoCopyWithImpl<$Res>
 
 /// Create a copy of IpInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ip = null,Object? countryCode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? ip = null,Object? countryCode = null,Object? country = freezed,Object? region = freezed,}) {
   return _then(_IpInfo(
 ip: null == ip ? _self.ip : ip // ignore: cast_nullable_to_non_nullable
 as String,countryCode: null == countryCode ? _self.countryCode : countryCode // ignore: cast_nullable_to_non_nullable
-as String,
+as String,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
+as String?,region: freezed == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -4973,7 +4979,7 @@ as Validator?,
 /// @nodoc
 mixin _$AndroidState {
 
- String get currentProfileName; String get stopText; bool get onlyStatisticsProxy; bool get crashlytics;
+ String get currentProfileName; String get stopText; bool get onlyStatisticsProxy; bool get crashlytics; bool get showTrafficFloatingWindow;
 /// Create a copy of AndroidState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4986,16 +4992,16 @@ $AndroidStateCopyWith<AndroidState> get copyWith => _$AndroidStateCopyWithImpl<A
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AndroidState&&(identical(other.currentProfileName, currentProfileName) || other.currentProfileName == currentProfileName)&&(identical(other.stopText, stopText) || other.stopText == stopText)&&(identical(other.onlyStatisticsProxy, onlyStatisticsProxy) || other.onlyStatisticsProxy == onlyStatisticsProxy)&&(identical(other.crashlytics, crashlytics) || other.crashlytics == crashlytics));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AndroidState&&(identical(other.currentProfileName, currentProfileName) || other.currentProfileName == currentProfileName)&&(identical(other.stopText, stopText) || other.stopText == stopText)&&(identical(other.onlyStatisticsProxy, onlyStatisticsProxy) || other.onlyStatisticsProxy == onlyStatisticsProxy)&&(identical(other.crashlytics, crashlytics) || other.crashlytics == crashlytics)&&(identical(other.showTrafficFloatingWindow, showTrafficFloatingWindow) || other.showTrafficFloatingWindow == showTrafficFloatingWindow));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentProfileName,stopText,onlyStatisticsProxy,crashlytics);
+int get hashCode => Object.hash(runtimeType,currentProfileName,stopText,onlyStatisticsProxy,crashlytics,showTrafficFloatingWindow);
 
 @override
 String toString() {
-  return 'AndroidState(currentProfileName: $currentProfileName, stopText: $stopText, onlyStatisticsProxy: $onlyStatisticsProxy, crashlytics: $crashlytics)';
+  return 'AndroidState(currentProfileName: $currentProfileName, stopText: $stopText, onlyStatisticsProxy: $onlyStatisticsProxy, crashlytics: $crashlytics, showTrafficFloatingWindow: $showTrafficFloatingWindow)';
 }
 
 
@@ -5006,7 +5012,7 @@ abstract mixin class $AndroidStateCopyWith<$Res>  {
   factory $AndroidStateCopyWith(AndroidState value, $Res Function(AndroidState) _then) = _$AndroidStateCopyWithImpl;
 @useResult
 $Res call({
- String currentProfileName, String stopText, bool onlyStatisticsProxy, bool crashlytics
+ String currentProfileName, String stopText, bool onlyStatisticsProxy, bool crashlytics, bool showTrafficFloatingWindow
 });
 
 
@@ -5023,12 +5029,13 @@ class _$AndroidStateCopyWithImpl<$Res>
 
 /// Create a copy of AndroidState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentProfileName = null,Object? stopText = null,Object? onlyStatisticsProxy = null,Object? crashlytics = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? currentProfileName = null,Object? stopText = null,Object? onlyStatisticsProxy = null,Object? crashlytics = null,Object? showTrafficFloatingWindow = null,}) {
   return _then(_self.copyWith(
 currentProfileName: null == currentProfileName ? _self.currentProfileName : currentProfileName // ignore: cast_nullable_to_non_nullable
 as String,stopText: null == stopText ? _self.stopText : stopText // ignore: cast_nullable_to_non_nullable
 as String,onlyStatisticsProxy: null == onlyStatisticsProxy ? _self.onlyStatisticsProxy : onlyStatisticsProxy // ignore: cast_nullable_to_non_nullable
 as bool,crashlytics: null == crashlytics ? _self.crashlytics : crashlytics // ignore: cast_nullable_to_non_nullable
+as bool,showTrafficFloatingWindow: null == showTrafficFloatingWindow ? _self.showTrafficFloatingWindow : showTrafficFloatingWindow // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -5114,10 +5121,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String currentProfileName,  String stopText,  bool onlyStatisticsProxy,  bool crashlytics)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String currentProfileName,  String stopText,  bool onlyStatisticsProxy,  bool crashlytics,  bool showTrafficFloatingWindow)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AndroidState() when $default != null:
-return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProxy,_that.crashlytics);case _:
+return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProxy,_that.crashlytics,_that.showTrafficFloatingWindow);case _:
   return orElse();
 
 }
@@ -5135,10 +5142,10 @@ return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProx
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String currentProfileName,  String stopText,  bool onlyStatisticsProxy,  bool crashlytics)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String currentProfileName,  String stopText,  bool onlyStatisticsProxy,  bool crashlytics,  bool showTrafficFloatingWindow)  $default,) {final _that = this;
 switch (_that) {
 case _AndroidState():
-return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProxy,_that.crashlytics);case _:
+return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProxy,_that.crashlytics,_that.showTrafficFloatingWindow);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -5155,10 +5162,10 @@ return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProx
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String currentProfileName,  String stopText,  bool onlyStatisticsProxy,  bool crashlytics)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String currentProfileName,  String stopText,  bool onlyStatisticsProxy,  bool crashlytics,  bool showTrafficFloatingWindow)?  $default,) {final _that = this;
 switch (_that) {
 case _AndroidState() when $default != null:
-return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProxy,_that.crashlytics);case _:
+return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProxy,_that.crashlytics,_that.showTrafficFloatingWindow);case _:
   return null;
 
 }
@@ -5170,13 +5177,14 @@ return $default(_that.currentProfileName,_that.stopText,_that.onlyStatisticsProx
 @JsonSerializable()
 
 class _AndroidState implements AndroidState {
-  const _AndroidState({required this.currentProfileName, required this.stopText, required this.onlyStatisticsProxy, required this.crashlytics});
+  const _AndroidState({required this.currentProfileName, required this.stopText, required this.onlyStatisticsProxy, required this.crashlytics, required this.showTrafficFloatingWindow});
   factory _AndroidState.fromJson(Map<String, dynamic> json) => _$AndroidStateFromJson(json);
 
 @override final  String currentProfileName;
 @override final  String stopText;
 @override final  bool onlyStatisticsProxy;
 @override final  bool crashlytics;
+@override final  bool showTrafficFloatingWindow;
 
 /// Create a copy of AndroidState
 /// with the given fields replaced by the non-null parameter values.
@@ -5191,16 +5199,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AndroidState&&(identical(other.currentProfileName, currentProfileName) || other.currentProfileName == currentProfileName)&&(identical(other.stopText, stopText) || other.stopText == stopText)&&(identical(other.onlyStatisticsProxy, onlyStatisticsProxy) || other.onlyStatisticsProxy == onlyStatisticsProxy)&&(identical(other.crashlytics, crashlytics) || other.crashlytics == crashlytics));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AndroidState&&(identical(other.currentProfileName, currentProfileName) || other.currentProfileName == currentProfileName)&&(identical(other.stopText, stopText) || other.stopText == stopText)&&(identical(other.onlyStatisticsProxy, onlyStatisticsProxy) || other.onlyStatisticsProxy == onlyStatisticsProxy)&&(identical(other.crashlytics, crashlytics) || other.crashlytics == crashlytics)&&(identical(other.showTrafficFloatingWindow, showTrafficFloatingWindow) || other.showTrafficFloatingWindow == showTrafficFloatingWindow));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentProfileName,stopText,onlyStatisticsProxy,crashlytics);
+int get hashCode => Object.hash(runtimeType,currentProfileName,stopText,onlyStatisticsProxy,crashlytics,showTrafficFloatingWindow);
 
 @override
 String toString() {
-  return 'AndroidState(currentProfileName: $currentProfileName, stopText: $stopText, onlyStatisticsProxy: $onlyStatisticsProxy, crashlytics: $crashlytics)';
+  return 'AndroidState(currentProfileName: $currentProfileName, stopText: $stopText, onlyStatisticsProxy: $onlyStatisticsProxy, crashlytics: $crashlytics, showTrafficFloatingWindow: $showTrafficFloatingWindow)';
 }
 
 
@@ -5211,7 +5219,7 @@ abstract mixin class _$AndroidStateCopyWith<$Res> implements $AndroidStateCopyWi
   factory _$AndroidStateCopyWith(_AndroidState value, $Res Function(_AndroidState) _then) = __$AndroidStateCopyWithImpl;
 @override @useResult
 $Res call({
- String currentProfileName, String stopText, bool onlyStatisticsProxy, bool crashlytics
+ String currentProfileName, String stopText, bool onlyStatisticsProxy, bool crashlytics, bool showTrafficFloatingWindow
 });
 
 
@@ -5228,12 +5236,13 @@ class __$AndroidStateCopyWithImpl<$Res>
 
 /// Create a copy of AndroidState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentProfileName = null,Object? stopText = null,Object? onlyStatisticsProxy = null,Object? crashlytics = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? currentProfileName = null,Object? stopText = null,Object? onlyStatisticsProxy = null,Object? crashlytics = null,Object? showTrafficFloatingWindow = null,}) {
   return _then(_AndroidState(
 currentProfileName: null == currentProfileName ? _self.currentProfileName : currentProfileName // ignore: cast_nullable_to_non_nullable
 as String,stopText: null == stopText ? _self.stopText : stopText // ignore: cast_nullable_to_non_nullable
 as String,onlyStatisticsProxy: null == onlyStatisticsProxy ? _self.onlyStatisticsProxy : onlyStatisticsProxy // ignore: cast_nullable_to_non_nullable
 as bool,crashlytics: null == crashlytics ? _self.crashlytics : crashlytics // ignore: cast_nullable_to_non_nullable
+as bool,showTrafficFloatingWindow: null == showTrafficFloatingWindow ? _self.showTrafficFloatingWindow : showTrafficFloatingWindow // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

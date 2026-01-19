@@ -123,7 +123,8 @@ class ServicePlugin : FlutterPlugin, MethodChannel.MethodCallHandler,
                 NotificationParams(
                     title = params.currentProfileName,
                     stopText = params.stopText,
-                    onlyStatisticsProxy = params.onlyStatisticsProxy
+                    onlyStatisticsProxy = params.onlyStatisticsProxy,
+                    showTrafficFloatingWindow = params.showTrafficFloatingWindow
                 )
             )
             Service.setCrashlytics(params.crashlytics)

@@ -40,6 +40,32 @@ class _WindowContainerState extends ConsumerState<WindowManager>
     });
     windowExtManager.addListener(this);
     windowManager.addListener(this);
+    ref.listenManual(appSettingProvider.select((state) => state.isMiniMode), (
+      prev,
+      next,
+    ) {
+      if (prev != next) {
+        _handleMiniModeChange(next);
+      }
+    });
+  }
+
+  Future<void> _handleMiniModeChange(bool isMiniMode) async {
+    if (isMiniMode) {
+      await windowManager.setAlwaysOnTop(true);
+      await windowManager.setSize(const Size(220, 100));
+      await windowManager.setResizable(false);
+      await windowManager.setHasShadow(false);
+    } else {
+      final windowSetting = ref.read(windowSettingProvider);
+      await windowManager.setAlwaysOnTop(false);
+      await windowManager.setResizable(true);
+      await windowManager.setHasShadow(true);
+      await windowManager.setSize(Size(windowSetting.width, windowSetting.height));
+      if (windowSetting.left != null && windowSetting.top != null) {
+        await windowManager.setPosition(Offset(windowSetting.left!, windowSetting.top!));
+      }
+    }
   }
 
   @override
@@ -64,6 +90,7 @@ class _WindowContainerState extends ConsumerState<WindowManager>
   @override
   Future<void> onWindowMoved() async {
     super.onWindowMoved();
+    if (ref.read(appSettingProvider).isMiniMode) return;
     final offset = await windowManager.getPosition();
     ref
         .read(windowSettingProvider.notifier)
@@ -75,6 +102,7 @@ class _WindowContainerState extends ConsumerState<WindowManager>
   @override
   Future<void> onWindowResized() async {
     super.onWindowResized();
+    if (ref.read(appSettingProvider).isMiniMode) return;
     final size = await windowManager.getSize();
     ref
         .read(windowSettingProvider.notifier)

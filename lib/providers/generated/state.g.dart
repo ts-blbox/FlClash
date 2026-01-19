@@ -2401,7 +2401,7 @@ final class AndroidStateProvider
   }
 }
 
-String _$androidStateHash() => r'9f527fbb00c7e0c177f023e77d2f23458543d72f';
+String _$androidStateHash() => r'244ce92c4fc14916c02ad34e17161b9f42da1de4';
 
 @ProviderFor(overlayTopOffset)
 const overlayTopOffsetProvider = OverlayTopOffsetProvider._();

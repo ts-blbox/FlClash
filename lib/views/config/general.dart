@@ -1,6 +1,7 @@
 import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/models/models.dart';
+import 'package:fl_clash/plugins/app.dart';
 import 'package:fl_clash/providers/providers.dart';
 import 'package:fl_clash/state.dart';
 import 'package:fl_clash/widgets/widgets.dart';
@@ -446,6 +447,39 @@ class ExternalControllerItem extends ConsumerWidget {
   }
 }
 
+class ShowTrafficFloatingWindowItem extends ConsumerWidget {
+  const ShowTrafficFloatingWindowItem({super.key});
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final showTrafficFloatingWindow = ref.watch(
+      appSettingProvider.select((state) => state.showTrafficFloatingWindow),
+    );
+    return ListItem.switchItem(
+      leading: const Icon(Icons.fluorescent_outlined),
+      title: Text(appLocalizations.showTrafficFloatingWindow),
+      subtitle: Text(appLocalizations.showTrafficFloatingWindowDesc),
+      delegate: SwitchDelegate(
+        value: showTrafficFloatingWindow,
+        onChanged: (bool value) async {
+          if (value && system.isAndroid) {
+            final isGranted = await app?.checkSystemAlertWindowPermission();
+            if (isGranted == false) {
+              final result = await app?.requestSystemAlertWindowPermission();
+              if (result != true) return;
+            }
+          }
+          ref
+              .read(appSettingProvider.notifier)
+              .updateState(
+                (state) => state.copyWith(showTrafficFloatingWindow: value),
+              );
+        },
+      ),
+    );
+  }
+}
+
 final generalItems = <Widget>[
   LogLevelItem(),
   UaItem(),
@@ -461,6 +495,7 @@ final generalItems = <Widget>[
   TcpConcurrentItem(),
   GeodataLoaderItem(),
   ExternalControllerItem(),
+  const ShowTrafficFloatingWindowItem(),
 ].separated(const Divider(height: 0)).toList();
 
 class _PortDialog extends ConsumerStatefulWidget {

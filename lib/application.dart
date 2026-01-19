@@ -12,9 +12,11 @@ import 'package:fl_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'widgets/widgets.dart';
 
 import 'controller.dart';
 import 'pages/pages.dart';
+import 'widgets/mini_mode_window.dart';
 
 class Application extends ConsumerStatefulWidget {
   const Application({super.key});
@@ -125,7 +127,24 @@ class ApplicationState extends ConsumerState<Application> {
             return AppEnvManager(
               child: _buildApp(
                 child: _buildPlatformState(
-                  child: _buildState(child: _buildPlatformApp(child: child!)),
+                  child: _buildState(
+                    child: Consumer(
+                      builder: (context, ref, _) {
+                        final isMiniMode = ref.watch(
+                          appSettingProvider.select((state) => state.isMiniMode),
+                        );
+                        if (isMiniMode) {
+                          return const MiniModeWindow();
+                        }
+                        return Stack(
+                          children: [
+                            _buildPlatformApp(child: child!),
+                            const TrafficFloatingWindow(),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
             );

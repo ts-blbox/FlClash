@@ -68,6 +68,18 @@ class App {
     );
   }
 
+  Future<bool?> checkSystemAlertWindowPermission() async {
+    return await methodChannel.invokeMethod<bool>(
+      'checkSystemAlertWindowPermission',
+    );
+  }
+
+  Future<bool?> requestSystemAlertWindowPermission() async {
+    return await methodChannel.invokeMethod<bool>(
+      'requestSystemAlertWindowPermission',
+    );
+  }
+
   Future<bool> openFile(String path) async {
     return await methodChannel.invokeMethod<bool>('openFile', {'path': path}) ??
         false;

@@ -467,5 +467,8 @@
   "vpnConfigChangeDetected": "检测到VPN相关配置改动",
   "restart": "重启",
   "speedStatistics": "网速统计",
+  "showTrafficFloatingWindow": "显示流量悬浮窗",
+  "miniMode": "小窗模式",
+  "showTrafficFloatingWindowDesc": "代理连接成功后显示悬浮流量统计窗",
   "resetPageChangesTip": "当前页面存在更改，确定重置吗？"
 }

@@ -3654,6 +3654,36 @@ class AppLocalizations {
     );
   }
 
+  /// `Show traffic floating window`
+  String get showTrafficFloatingWindow {
+    return Intl.message(
+      'Show traffic floating window',
+      name: 'showTrafficFloatingWindow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mini Mode`
+  String get miniMode {
+    return Intl.message(
+      'Mini Mode',
+      name: 'miniMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show a floating traffic statistics window after a successful connection`
+  String get showTrafficFloatingWindowDesc {
+    return Intl.message(
+      'Show a floating traffic statistics window after a successful connection',
+      name: 'showTrafficFloatingWindowDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `The current page has changes. Are you sure you want to reset?`
   String get resetPageChangesTip {
     return Intl.message(

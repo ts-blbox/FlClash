@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:defer_pointer/defer_pointer.dart';
 import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/enum/enum.dart';
+import 'package:fl_clash/plugins/app.dart';
 import 'package:fl_clash/providers/providers.dart';
 import 'package:fl_clash/state.dart';
 import 'package:fl_clash/widgets/widgets.dart';
@@ -143,6 +144,68 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
             );
           },
         ),
+      if (!isEdit)
+        Consumer(
+          builder: (_, ref, _) {
+            final showTrafficFloatingWindow = ref.watch(
+              appSettingProvider.select((state) => state.showTrafficFloatingWindow),
+            );
+            return Tooltip(
+                message: appLocalizations.showTrafficFloatingWindow,
+                child: IconButton(
+                  onPressed: () async {
+                    final value = !showTrafficFloatingWindow;
+                    if (value && system.isAndroid) {
+                      final isGranted =
+                          await app?.checkSystemAlertWindowPermission();
+                      if (isGranted == false) {
+                        final result =
+                            await app?.requestSystemAlertWindowPermission();
+                        if (result != true) return;
+                      }
+                    }
+                    ref.read(appSettingProvider.notifier).updateState(
+                          (state) => state.copyWith(
+                            showTrafficFloatingWindow: value,
+                          ),
+                        );
+                  },
+                  icon: Icon(
+                    showTrafficFloatingWindow
+                        ? Icons.fluorescent
+                        : Icons.fluorescent_outlined,
+                    color: showTrafficFloatingWindow
+                        ? context.colorScheme.primary
+                        : null,
+                  ),
+                ),
+              );
+            },
+          ),
+        if (!isEdit && system.isDesktop)
+          Consumer(
+            builder: (_, ref, _) {
+              final isMiniMode = ref.watch(
+                appSettingProvider.select((state) => state.isMiniMode),
+              );
+              return Tooltip(
+                message: appLocalizations.miniMode,
+                child: IconButton(
+                  onPressed: () {
+                    ref.read(appSettingProvider.notifier).updateState(
+                          (state) => state.copyWith(
+                            isMiniMode: !isMiniMode,
+                          ),
+                        );
+                  },
+                  icon: Icon(
+                    isMiniMode ? Icons.open_in_full : Icons.open_in_full_outlined,
+                    color: isMiniMode ? context.colorScheme.primary : null,
+                  ),
+                ),
+              );
+            },
+          ),
       if (isEdit)
         ValueListenableBuilder(
           valueListenable: _addedWidgetsNotifier,
@@ -223,12 +286,56 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
     }
   }
 
+  Widget _buildNoProfilePrompt() {
+    return GridItem(
+      crossAxisCellCount: 8,
+      child: CommonCard(
+        onPressed: () {
+          ref.read(currentPageLabelProvider.notifier).value =
+              PageLabel.profiles;
+        },
+        child: Container(
+          padding: EdgeInsets.all(16.ap),
+          child: Row(
+            children: [
+              Icon(
+                Icons.info_outline,
+                color: context.colorScheme.primary,
+                size: 32.ap,
+              ),
+              SizedBox(width: 16.ap),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      appLocalizations.nullProfileDesc,
+                      style: context.textTheme.titleMedium?.toBold,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 8.ap),
+              Icon(
+                Icons.chevron_right,
+                color: context.colorScheme.onSurfaceVariant,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final dashboardState = ref.watch(dashboardStateProvider);
+    final profiles = ref.watch(profilesProvider);
     final columns = max(4 * ((dashboardState.contentWidth / 280).ceil()), 8);
     final spacing = 14.ap;
     final children = [
+      if (profiles.isEmpty) _buildNoProfilePrompt(),
       ...dashboardState.dashboardWidgets
           .where(
             (item) => item.platforms.contains(SupportPlatform.currentPlatform),

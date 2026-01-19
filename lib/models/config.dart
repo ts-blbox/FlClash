@@ -38,12 +38,12 @@ final defaultThemeProps = ThemeProps(primaryColor: defaultPrimaryColor);
 
 const List<DashboardWidget> defaultDashboardWidgets = [
   DashboardWidget.networkSpeed,
-  DashboardWidget.systemProxyButton,
-  DashboardWidget.tunButton,
+  DashboardWidget.trafficUsage,
   DashboardWidget.outboundMode,
   DashboardWidget.networkDetection,
-  DashboardWidget.trafficUsage,
   DashboardWidget.intranetIp,
+  DashboardWidget.systemProxyButton,
+  DashboardWidget.tunButton,
 ];
 
 List<DashboardWidget> dashboardWidgetsSafeFormJson(
@@ -80,6 +80,8 @@ abstract class AppSettingProps with _$AppSettingProps {
     @Default(false) bool crashlyticsTip,
     @Default(false) bool crashlytics,
     @Default(true) bool minimizeOnExit,
+    @Default(false) bool showTrafficFloatingWindow,
+    @Default(false) bool isMiniMode,
     @Default(false) bool hidden,
     @Default(false) bool developerMode,
     @Default(RecoveryStrategy.compatible) RecoveryStrategy recoveryStrategy,

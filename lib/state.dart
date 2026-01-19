@@ -364,6 +364,7 @@ class GlobalState {
       onlyStatisticsProxy: config.appSetting.onlyStatisticsProxy,
       stopText: appLocalizations.stop,
       crashlytics: config.appSetting.crashlytics,
+      showTrafficFloatingWindow: config.appSetting.showTrafficFloatingWindow,
     );
   }
 
