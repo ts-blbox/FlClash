@@ -1,3 +1,8 @@
+'''
+Date: 2026-01-15 21:07:16
+LastEditors: blbox
+LastEditTime: 2026-01-19 11:29:50
+'''
 import os
 import json
 import requests
@@ -45,9 +50,9 @@ if TAG:
     text += f"\n**{TAG}**\n"
 
 if IS_STABLE:
-    text += f"\nhttps://github.com/chen08209/FlClash/releases/tag/{TAG}\n"
+    text += f"\nhttps://github.com/ts-blbox/FlClash/releases/tag/{TAG}\n"
 else:
-    text += f"\nhttps://github.com/chen08209/FlClash/actions/runs/{RUN_ID}\n"
+    text += f"\nhttps://github.com/ts-blbox/FlClash/actions/runs/{RUN_ID}\n"
 
 if os.path.exists(release):
     text += "\n"

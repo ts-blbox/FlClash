@@ -163,7 +163,6 @@ class AboutView extends StatelessWidget {
         ),
       ),
       const SizedBox(height: 12),
-      ..._buildContributorsSection(),
       ..._buildMoreSection(context),
     ];
     return BaseScaffold(
